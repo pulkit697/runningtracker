@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">Run Tracker</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string-array name="sort">
+        <item>Date</item>
+        <item>Running Time</item>
+        <item>Distance</item>
+        <item>Calories Burnt</item>
+    </string-array>
+    <string name="welcome_screen">Welcome! \n Please enter your name and your weight.</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

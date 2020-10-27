@@ -6,21 +6,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:elevation="0dp"
-        >
+        app:elevation="0dp">
+
         <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@android:color/white"
-            app:title="Enjoy your run"
-            app:navigationIcon="@drawable/ic_drawer"
             app:menu="@menu/menu_top_bar"
-            />
+            app:navigationIcon="@drawable/ic_drawer"
+            app:title="Enjoy your run" />
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <FrameLayout
+        android:id="@+id/flMain"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        app:layout_anchor="@id/appBarLayout" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@id/bottom_appbar"
+        android:contentDescription="Run"
+        android:src="@drawable/ic_run"
+        app:borderWidth="1dp"
+        app:backgroundTint="@android:color/black"
+        android:backgroundTint="@android:color/holo_purple"
+        app:rippleColor="@android:color/black"/>
+
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottom_appbar"
         android:layout_width="match_parent"
@@ -37,13 +56,5 @@
             android:background="@android:color/transparent"
             app:menu="@menu/bottom_nav_menu"/>
     </com.google.android.material.bottomappbar.BottomAppBar>
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_anchor="@id/bottom_appbar"
-        android:src="@drawable/ic_music"
-        app:borderWidth="1dp"
-        app:backgroundTint="@android:color/black"
-        android:backgroundTint="@android:color/holo_purple"
-        app:rippleColor="@android:color/black"/>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -7,8 +7,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_ask_details)
+        setContentView(R.layout.activity_main)
 
-//        botton_nav_main.background = null
+        botton_nav_main.background = null
     }
 }
