@@ -1,28 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/ivRun"
+    android:layout_height="wrap_content"
+    android:paddingBottom="15dp"
+    app:cardElevation="1dp"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="5dp"
+    >
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="15dp"
+    >
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvRun"
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearance="@style/CardView.Light" />
+        app:cardElevation="2dp"
+        app:cardCornerRadius="5dp"
+        >
+    <ImageView
+        android:id="@+id/ivRun"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         />
+    </androidx.cardview.widget.CardView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@+id/tvDist"
-        app:layout_constraintTop_toBottomOf="@id/ivRun"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@id/constraintLayout3"
+        app:layout_constraintTop_toBottomOf="@id/cvRun"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvDate"
             android:layout_width="match_parent"
@@ -31,16 +49,36 @@
             android:paddingStart="16dp"
             app:layout_constraintBottom_toTopOf="@+id/tvTime"
             app:layout_constraintTop_toTopOf="parent" />
-
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TIME"
             android:paddingStart="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/tvCal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvDate" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/cvRun"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/constraintLayout2"
+        app:layout_constraintEnd_toStartOf="@id/tvDist"
+        >
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvSpeed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AVG SPEED"
+            android:paddingStart="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tvCal"
+            />
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvCal"
             android:layout_width="match_parent"
@@ -48,22 +86,20 @@
             android:text="CALORIES"
             android:paddingStart="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTime" />
+            app:layout_constraintTop_toBottomOf="@id/tvSpeed" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvDist"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         android:text="DISTANCE"
         android:textSize="24sp"
         android:paddingEnd="16dp"
         android:paddingStart="6dp"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/constraintLayout2"
-
-        app:layout_constraintTop_toBottomOf="@+id/ivRun" />
-
+        app:layout_constraintTop_toTopOf="@id/constraintLayout2"
+        app:layout_constraintBottom_toBottomOf="@id/constraintLayout2"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

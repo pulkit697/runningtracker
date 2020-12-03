@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/mi_home"
+        android:id="@+id/trackingFragment"
         android:title="Home"
         android:icon="@drawable/ic_home"/>
     <item
-        android:title=""
+        android:id="@+id/runFragment"
+        android:title="History"
+        android:icon="@drawable/history"
         />
     <item
-        android:id="@+id/stats"
+        android:id="@+id/statsFragment"
         android:title="Statistics"
         android:icon="@drawable/ic_stats"
         />
