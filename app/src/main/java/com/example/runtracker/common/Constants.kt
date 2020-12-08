@@ -30,4 +30,8 @@ object Constants {
 
     const val LOCATION_UPDATE_INTERVAL = 5000L
     const val LOCATION_FASTEST_INTERVAL = 2000L
+
+    const val SONGS_LIST = "SONGS_LIST"
+    const val SONG_NAME = "SONG_NAME"
+    const val SONG_POSITION = "SONG_POSITION"
 }

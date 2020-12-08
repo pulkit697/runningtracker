@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".runningapp.ui.MainActivity"
+    >
     <item
+        android:id="@+id/play_music_main"
         android:title="Play Music"
         android:icon="@drawable/ic_music"
         app:showAsAction="always"/>

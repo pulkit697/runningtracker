@@ -3,11 +3,8 @@ package com.example.runtracker.runningapp.ui.fragments
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.navigation.NavOptions
-import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.runtracker.R
@@ -17,6 +14,7 @@ import com.example.runtracker.common.Constants.KEY_WEIGHT
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_activity_main.*
 import kotlinx.android.synthetic.main.fragment_ask_details.*
 import javax.inject.Inject
 

@@ -87,4 +87,8 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     //MD Toast
     compile 'com.valdesekamdem.library:md-toast:0.9.0'
+    //dexter
+    implementation 'com.karumi:dexter:6.2.2'
+    //drawer layout
+    implementation "androidx.drawerlayout:drawerlayout:1.1.1"
 }

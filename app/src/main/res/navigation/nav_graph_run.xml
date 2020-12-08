@@ -16,9 +16,6 @@
             android:id="@+id/action_trackingFragment_to_runFragment"
             app:destination="@id/runFragment" />
         <action
-            android:id="@+id/action_trackingFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
-        <action
             android:id="@+id/action_trackingFragment_to_statsFragment"
             app:destination="@id/statsFragment" />
     </fragment>
@@ -32,17 +29,6 @@
             app:destination="@id/trackingFragment" />
     </fragment>
     <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.example.runtracker.runningapp.ui.fragments.SettingsFragment"
-        android:label="SettingsFragment" >
-        <action
-            android:id="@+id/action_settingsFragment_to_runFragment"
-            app:destination="@id/runFragment" />
-        <action
-            android:id="@+id/action_settingsFragment_to_askDetailsFrag"
-            app:destination="@id/askDetailsFrag" />
-    </fragment>
-    <fragment
         android:id="@+id/statsFragment"
         android:name="com.example.runtracker.runningapp.ui.fragments.StatsFragment"
         android:label="StatsFragment" >
@@ -52,9 +38,6 @@
         <action
             android:id="@+id/action_statsFragment_to_runFragment"
             app:destination="@id/runFragment" />
-        <action
-            android:id="@+id/action_statsFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/runFragment"
@@ -63,9 +46,6 @@
         <action
             android:id="@+id/action_runFragment_to_trackingFragment"
             app:destination="@id/trackingFragment" />
-        <action
-            android:id="@+id/action_runFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
         <action
             android:id="@+id/action_runFragment_to_statsFragment"
             app:destination="@id/statsFragment" />
