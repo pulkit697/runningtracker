@@ -37,18 +37,13 @@ class StatsFragment : Fragment(R.layout.fragment_statistics) {
         bcBarChart.xAxis.apply {
             position = XAxis.XAxisPosition.BOTTOM
             setDrawLabels(false)
-            axisLineColor = Color.DKGRAY
-            textColor = Color.BLACK
+            axisLineColor = R.color.dark_gray
+            textColor = R.color.black
             setDrawGridLines(false)
         }
         bcBarChart.axisLeft.apply {
-            axisLineColor = Color.DKGRAY
-            textColor = Color.BLACK
-            setDrawGridLines(false)
-        }
-        bcBarChart.axisRight.apply {
-            axisLineColor = Color.DKGRAY
-            textColor = Color.BLACK
+            axisLineColor = R.color.dark_gray
+            textColor = R.color.black
             setDrawGridLines(false)
         }
         bcBarChart.apply {
@@ -90,9 +85,9 @@ class StatsFragment : Fragment(R.layout.fragment_statistics) {
         viewModel.runsSortedByDate.observe(viewLifecycleOwner, Observer {
             it?.let {
                 val allDistances = it.indices.map { i-> BarEntry(i.toFloat(),it[i].distanceMeters.toFloat()) }
-                var barDataSet = LineDataSet(allDistances,"Distance Run Over Time").apply {
-                    valueTextColor = Color.DKGRAY
-                    color = Color.LTGRAY
+                val barDataSet = LineDataSet(allDistances,"Distance Run Over Time").apply {
+                    valueTextColor = R.color.dark_gray
+                    color = R.color.light_gray
                     mode = LineDataSet.Mode.CUBIC_BEZIER
                     setCircleColor(ContextCompat.getColor(requireContext(),R.color.colorPrimary))
                 }

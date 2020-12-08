@@ -31,7 +31,6 @@ class MainActivity : AppCompatActivity(){
 
     @Inject
     lateinit var runDao: RunDao
-    lateinit var toggle: ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +49,7 @@ class MainActivity : AppCompatActivity(){
             .addOnDestinationChangedListener { _, destination, _ ->
                 when(destination.id)
                 {
-                    R.id.askDetailsFrag -> bottom_nav_main.visibility = View.GONE
+                    R.id.askDetailsFrag,R.id.accountFrag,R.id.aboutFrag,R.id.allRunsFragment -> bottom_nav_main.visibility = View.GONE
                     else -> bottom_nav_main.visibility = View.VISIBLE
                 }
             }

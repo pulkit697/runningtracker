@@ -1,59 +1,224 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/ivAccount"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/rlLevel1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@+id/tvName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_user" />
+        android:orientation="horizontal"
+        android:padding="20dp"
+        >
+        <ImageView
+            android:id="@+id/ivAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_user" />
 
-    <TextView
-        android:id="@+id/tvName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Name"
-        app:layout_constraintBottom_toBottomOf="@+id/ivAccount"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ivAccount" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clTextViewName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            >
+        <TextView
+            android:id="@+id/tvNameStr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="24sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+           />
+        <ImageButton
+            android:id="@+id/ibEditName"
+            android:contentDescription="Edit Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_pencil"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvNameStr"
+            app:layout_constraintBottom_toBottomOf="@id/tvNameStr"
+            android:background="@color/transparent"
+            />
 
-    <TextView
-        android:id="@+id/tvWeight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Weight"
-        app:layout_constraintBottom_toTopOf="@+id/tvDistance"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivAccount" />
 
-    <TextView
-        android:id="@+id/tvDistance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Distance Run"
-        app:layout_constraintBottom_toTopOf="@+id/tvCalories"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvWeight" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clEditTextName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:layout_marginStart="20dp"
+            >
+            <EditText
+                android:id="@+id/etNameStr"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:padding="0dp"
+                android:textCursorDrawable="@null"
+                android:backgroundTint="@color/transparent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/ibEditNameOK"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+            <ImageButton
+                android:id="@+id/ibEditNameOK"
+                android:contentDescription="Edit Name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_done"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/etNameStr"
+                app:layout_constraintBottom_toBottomOf="@id/etNameStr"
+                android:background="@color/transparent"
+                />
 
-    <TextView
-        android:id="@+id/tvCalories"
-        android:layout_width="wrap_content"
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Calories Burnt"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDistance" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:padding="10dp"
+        android:weightSum="2"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvWeightStr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Weight"
+            android:textSize="22sp"
+            />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clTextViewWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+        <TextView
+            android:id="@+id/tvWeightVal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="80 Kg"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="22sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+        <ImageButton
+            android:id="@+id/ibEditWeight"
+            android:contentDescription="Edit weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_pencil"
+            android:background="@color/transparent"
+            app:layout_constraintTop_toTopOf="@id/tvWeightVal"
+            app:layout_constraintBottom_toBottomOf="@id/tvWeightVal"
+            />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clEditTextWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_weight="1">
+            <EditText
+                android:id="@+id/etWeightVal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:padding="0dp"
+                android:inputType="numberDecimal"
+                android:textCursorDrawable="@null"
+                android:backgroundTint="@color/transparent"
+                app:layout_constraintEnd_toStartOf="@id/ibEditWeightOK"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+            <ImageButton
+                android:id="@+id/ibEditWeightOK"
+                android:contentDescription="Edit weight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_done"
+                android:background="@color/transparent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/etWeightVal"
+                app:layout_constraintBottom_toBottomOf="@id/etWeightVal"
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:weightSum="2"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:id="@+id/tvDistanceStr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total Distance"
+            android:textSize="22sp"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:id="@+id/tvDistanceVal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0 Km"
+            android:layout_weight="1"
+            android:textSize="22sp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:weightSum="2"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:id="@+id/tvCaloriesStr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total Calories"
+            android:textSize="22sp"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:id="@+id/tvCaloriesVal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0 Kcal"
+            android:layout_weight="1"
+            android:textSize="22sp"
+            />
+    </LinearLayout>
+
+</LinearLayout>

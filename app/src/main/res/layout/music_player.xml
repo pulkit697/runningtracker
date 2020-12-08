@@ -35,7 +35,7 @@
             android:layout_marginTop="20dp"
             android:text="Song Name"
             android:textAlignment="center"
-            android:textColor="@android:color/black"
+            android:textColor="@color/black"
             android:marqueeRepeatLimit="marquee_forever"
             android:ellipsize="marquee"
             />
@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 app:thumbColor="@color/colorPrimary"
-                app:trackColor="@android:color/black"
+                app:trackColor="@color/black"
                 app:trackHeight="1.5dp"
                 app:trackColorActive="@color/colorPrimary"
                 app:thumbRadius="7dp"
@@ -71,7 +71,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@drawable/ic_previous_song"
-                android:background="@android:color/transparent"
+                android:background="@color/transparent"
                 android:layout_below="@id/sbSeekSong"
                 android:layout_toLeftOf="@id/btTogglePlay"/>
 
@@ -80,7 +80,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@drawable/ic_pause_song"
-                android:background="@android:color/transparent"
+                android:background="@color/transparent"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/sbSeekSong"/>
             <ImageButton
@@ -88,7 +88,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@drawable/ic_next_song"
-                android:background="@android:color/transparent"
+                android:background="@color/transparent"
                 android:layout_below="@id/sbSeekSong"
                 android:layout_toRightOf="@id/btTogglePlay"
                 />

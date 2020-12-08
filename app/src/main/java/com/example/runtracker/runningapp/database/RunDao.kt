@@ -12,21 +12,24 @@ interface RunDao {
     suspend fun delete(run: Run)
 
     @Query("SELECT * FROM run_table ORDER BY datetimestamp DESC")
+    fun allRunsByDate():LiveData<List<Run>>
+
+    @Query("SELECT * FROM run_table ORDER BY datetimestamp DESC LIMIT 7")
     fun sortByDate():LiveData<List<Run>>
 
-    @Query("SELECT * FROM run_table ORDER BY datetimestamp")
+    @Query("SELECT * FROM run_table ORDER BY datetimestamp LIMIT 7")
     fun sortByDateAsc():LiveData<List<Run>>
 
-    @Query("SELECT * FROM run_table ORDER BY timeMilliSec DESC")
+    @Query("SELECT * FROM run_table ORDER BY timeMilliSec DESC LIMIT 7")
     fun sortByTime():LiveData<List<Run>>
 
-    @Query("SELECT * FROM run_table ORDER BY avgspeedkmph DESC")
+    @Query("SELECT * FROM run_table ORDER BY avgspeedkmph DESC LIMIT 7")
     fun sortBySpeed():LiveData<List<Run>>
 
-    @Query("SELECT * FROM run_table ORDER BY calories DESC")
+    @Query("SELECT * FROM run_table ORDER BY calories DESC LIMIT 7")
     fun sortByCalories():LiveData<List<Run>>
 
-    @Query("SELECT * FROM run_table ORDER BY distanceMeters DESC")
+    @Query("SELECT * FROM run_table ORDER BY distanceMeters DESC LIMIT 7")
     fun sortByDistance():LiveData<List<Run>>
 
     @Query("SELECT SUM(timeMilliSec) FROM run_table")

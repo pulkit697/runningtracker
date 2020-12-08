@@ -32,7 +32,8 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_api"/>
-        <activity android:name=".musicplayer.MusicMainActivity">
+        <activity android:name=".musicplayer.MusicMainActivity"
+            android:theme="@style/splashTheme">
         </activity>
         <activity android:name=".musicplayer.MusicPlayer"/>
     </application>

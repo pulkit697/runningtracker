@@ -89,7 +89,7 @@ public class MusicPlayer extends AppCompatActivity
         sbSeekSong.getThumb().setColorFilter(new PorterDuffColorFilter
                 (getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN));
         sbSeekSong.getProgressDrawable().setColorFilter(new PorterDuffColorFilter
-                (Color.BLACK, PorterDuff.Mode.MULTIPLY));
+                (getResources().getColor(R.color.black), PorterDuff.Mode.MULTIPLY));
     }
 
     private void startPlayer() {

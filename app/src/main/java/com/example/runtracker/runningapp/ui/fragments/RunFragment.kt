@@ -26,6 +26,7 @@ class RunFragment : Fragment(R.layout.fragment_run) {
         setUpRecyclerView()
 
         when(viewModel.sortType){
+            SortType.ALL -> spSort.setSelection(0)
             SortType.DATE -> spSort.setSelection(0)
             SortType.RUNNING_TIME -> spSort.setSelection(1)
             SortType.DISTANCE -> spSort.setSelection(2)

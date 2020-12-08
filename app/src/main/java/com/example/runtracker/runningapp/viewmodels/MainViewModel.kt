@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 
 class MainViewModel @ViewModelInject constructor(private val mainRepo:MainRepo):ViewModel() {
 
+    private var runsAllByDate = mainRepo.allRunsByDate()
     private var runsSortedByDate = mainRepo.sortByDate()
     private var runsSortedByDistance = mainRepo.sortByDistance()
     private var runsSortedBySpeed = mainRepo.sortBySpeed()
@@ -22,6 +23,11 @@ class MainViewModel @ViewModelInject constructor(private val mainRepo:MainRepo):
     var runs=MediatorLiveData<List<Run>>()
 
     init {
+        runs.addSource(runsAllByDate){result->
+            if(sortType==SortType.ALL){
+                result?.let { runs.value=it }
+            }
+        }
         runs.addSource(runsSortedByDate){result->
             if(sortType==SortType.DATE){
                 result?.let { runs.value=it }
@@ -50,6 +56,7 @@ class MainViewModel @ViewModelInject constructor(private val mainRepo:MainRepo):
     }
 
     fun sortRuns(sortType: SortType)=when(sortType){
+        SortType.ALL -> runsAllByDate.value?.let { runs.value = it }
         SortType.DATE -> runsSortedByDate.value?.let { runs.value = it }
         SortType.DISTANCE -> runsSortedByDistance.value?.let { runs.value = it }
         SortType.RUNNING_TIME -> runsSortedByTime.value?.let { runs.value = it }

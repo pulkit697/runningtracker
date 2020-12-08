@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Run Tracker</string>
+    <string name="app_name">FM:Fitness Melody</string>
     <string-array name="sort">
         <item>Date</item>
         <item>Running Time</item>
@@ -11,7 +11,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="google_maps_api">AIzaSyBo5-Mj1f7eWwD4OEOTD7rvchwoF2hgiC8</string>
     <string name="about_body">This app tracks your location on the map and measures distance run by you.
-        On the basis ofthe distance travelled and your body weight,
+        On the basis of the distance travelled and your body weight,
         it calculates the amount of calories burnt by you in that run.</string>
     <string name="navigation_drawer_open">Drawer Open</string>
     <string name="navigation_drawer_close">Drawer Closed</string>

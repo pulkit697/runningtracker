@@ -22,7 +22,7 @@
             android:id="@+id/action_bar_main"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@android:color/white"
+            android:background="@color/colorAccent"
             app:menu="@menu/menu_top_bar"
             app:title="Enjoy your run" />
 
@@ -49,8 +49,8 @@
         android:id="@+id/bottom_nav_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        app:backgroundTint="@android:color/white"
+        android:background="@color/colorAccent"
+        app:backgroundTint="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_nav_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>

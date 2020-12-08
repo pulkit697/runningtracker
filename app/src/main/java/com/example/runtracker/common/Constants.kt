@@ -1,6 +1,7 @@
 package com.example.runtracker.common
 
 import android.graphics.Color
+import com.example.runtracker.R
 
 object Constants {
     const val RUN_DATABASE_NAME = "run_db"
@@ -14,12 +15,10 @@ object Constants {
     const val NOTIFICATION_CHANNEL_NAME = "notification_channel_name"
     const val NOTIFICATION_ID = 1
 
-    const val TRACK_COLOR = Color.RED
+    const val TRACK_COLOR = R.color.red
     const val TRACK_WIDTH = 8f
     const val MAP_ZOOM = 18f
     const val TIMER_UPDATE_INTERVAL = 50L
-
-    const val ONE_WEEK = 604800000L
 
     const val KEY_SHARED_PREFERNCES = "KEY_SHARED_PREFERNCES"
     const val KEY_NAME = "KEY_NAME"
