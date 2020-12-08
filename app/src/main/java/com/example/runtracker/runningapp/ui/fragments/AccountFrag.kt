@@ -109,7 +109,6 @@ class AccountFrag:Fragment(R.layout.fragment_account) {
             sharedPref.edit()
                 .putString(Constants.KEY_NAME,name)
                 .apply()
-
         }
     }
 

@@ -49,8 +49,26 @@ class MainActivity : AppCompatActivity(){
             .addOnDestinationChangedListener { _, destination, _ ->
                 when(destination.id)
                 {
-                    R.id.askDetailsFrag,R.id.accountFrag,R.id.aboutFrag,R.id.allRunsFragment -> bottom_nav_main.visibility = View.GONE
-                    else -> bottom_nav_main.visibility = View.VISIBLE
+                    R.id.askDetailsFrag -> {
+                        bottom_nav_main.visibility = View.GONE
+                        action_bar_main.title = resources.getString(R.string.app_name)
+                    }
+                    R.id.accountFrag->{
+                        bottom_nav_main.visibility = View.GONE
+                        action_bar_main.title = "Account"
+                    }
+                    R.id.aboutFrag->{
+                        bottom_nav_main.visibility = View.GONE
+                        action_bar_main.title = ""
+                    }
+                    R.id.allRunsFragment->{
+                        bottom_nav_main.visibility = View.GONE
+                        action_bar_main.title = "All Runs"
+                    }
+                    else -> {
+                        bottom_nav_main.visibility = View.VISIBLE
+                        action_bar_main.title = resources.getString(R.string.app_name)
+                    }
                 }
             }
 
