@@ -14,7 +14,6 @@ import com.example.runtracker.common.Constants.KEY_WEIGHT
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_activity_main.*
 import kotlinx.android.synthetic.main.fragment_ask_details.*
 import javax.inject.Inject
 

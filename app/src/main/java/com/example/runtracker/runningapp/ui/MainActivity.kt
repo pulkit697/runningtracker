@@ -13,12 +13,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.widget.Toolbar
-import androidx.core.view.GravityCompat
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.example.runtracker.R
 import com.example.runtracker.common.Constants
@@ -28,12 +23,11 @@ import com.google.android.material.navigation.NavigationView
 import com.valdesekamdem.library.mdtoast.MDToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_activity_main.*
 import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(){
 
     @Inject
     lateinit var runDao: RunDao
@@ -45,12 +39,6 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
 
         setSupportActionBar(action_bar_main)
         navigateToTrackingFragmentIfNeeded(intent)
-
-        toggle = ActionBarDrawerToggle(this,dlDrawerLay,action_bar_main,R.string.navigation_drawer_open,R.string.navigation_drawer_close)
-        dlDrawerLay.addDrawerListener(toggle)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setHomeButtonEnabled(true)
-
         Timber.d("run database dao : ${runDao.hashCode()}")
 //
 //        NavigationUI.setupWithNavController(navViewDrawer,findNavController(R.id.navViewDrawer))
@@ -96,27 +84,9 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
             true
         }
         else-> {
-            if(toggle.onOptionsItemSelected(item))
-                true
 //            MDToast.makeText(this,"function called",MDToast.LENGTH_SHORT,MDToast.TYPE_WARNING).show()
             super.onOptionsItemSelected(item)
         }
-    }
-
-    override fun onPostCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onPostCreate(savedInstanceState, persistentState)
-        toggle.syncState()
-    }
-
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        toggle.onConfigurationChanged(newConfig)
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        Toast.makeText(this,"clicked!!",Toast.LENGTH_SHORT).show()
-        dlDrawerLay.closeDrawer(GravityCompat.START)
-        return true
     }
 
 }

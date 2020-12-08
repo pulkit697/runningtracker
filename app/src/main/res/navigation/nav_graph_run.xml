@@ -18,6 +18,12 @@
         <action
             android:id="@+id/action_trackingFragment_to_statsFragment"
             app:destination="@id/statsFragment" />
+        <action
+            android:id="@+id/action_trackingFragment_to_aboutFrag"
+            app:destination="@id/aboutFrag" />
+        <action
+            android:id="@+id/action_trackingFragment_to_accountFrag"
+            app:destination="@id/accountFrag" />
     </fragment>
     <fragment
         android:id="@+id/askDetailsFrag"
@@ -38,6 +44,12 @@
         <action
             android:id="@+id/action_statsFragment_to_runFragment"
             app:destination="@id/runFragment" />
+        <action
+            android:id="@+id/action_statsFragment_to_aboutFrag"
+            app:destination="@id/aboutFrag" />
+        <action
+            android:id="@+id/action_statsFragment_to_accountFrag"
+            app:destination="@id/accountFrag" />
     </fragment>
     <fragment
         android:id="@+id/runFragment"
@@ -49,5 +61,45 @@
         <action
             android:id="@+id/action_runFragment_to_statsFragment"
             app:destination="@id/statsFragment" />
+        <action
+            android:id="@+id/action_runFragment_to_aboutFrag"
+            app:destination="@id/aboutFrag" />
+        <action
+            android:id="@+id/action_runFragment_to_accountFrag"
+            app:destination="@id/accountFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFrag"
+        android:name="com.example.runtracker.runningapp.ui.fragments.AboutFrag"
+        android:label="AboutFrag" >
+        <action
+            android:id="@+id/action_aboutFrag_to_trackingFragment"
+            app:destination="@id/trackingFragment" />
+        <action
+            android:id="@+id/action_aboutFrag_to_statsFragment"
+            app:destination="@id/statsFragment" />
+        <action
+            android:id="@+id/action_aboutFrag_to_runFragment"
+            app:destination="@id/runFragment" />
+        <action
+            android:id="@+id/action_aboutFrag_to_accountFrag"
+            app:destination="@id/accountFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountFrag"
+        android:name="com.example.runtracker.runningapp.ui.fragments.AccountFrag"
+        android:label="AccountFrag" >
+        <action
+            android:id="@+id/action_accountFrag_to_trackingFragment"
+            app:destination="@id/trackingFragment" />
+        <action
+            android:id="@+id/action_accountFrag_to_runFragment"
+            app:destination="@id/runFragment" />
+        <action
+            android:id="@+id/action_accountFrag_to_statsFragment"
+            app:destination="@id/statsFragment" />
+        <action
+            android:id="@+id/action_accountFrag_to_aboutFrag"
+            app:destination="@id/aboutFrag" />
     </fragment>
 </navigation>
