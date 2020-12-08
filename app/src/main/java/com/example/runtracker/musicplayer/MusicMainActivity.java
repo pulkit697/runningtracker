@@ -1,13 +1,20 @@
 package com.example.runtracker.musicplayer;
 
 import android.Manifest;
-import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.media.MediaPlayer;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import com.example.runtracker.R;
@@ -21,6 +28,7 @@ import com.karumi.dexter.listener.single.PermissionListener;
 import com.valdesekamdem.library.mdtoast.MDToast;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MusicMainActivity extends AppCompatActivity {
 
@@ -29,12 +37,42 @@ public class MusicMainActivity extends AppCompatActivity {
     Toolbar toolbar;
     ImageButton ibCloseMusic;
 
+    int[] imageList = new int[]{R.drawable.ic_music_color,
+            R.drawable.ic_music_black,
+            R.drawable.ic_music_1,
+            R.drawable.ic_music_2,
+            R.drawable.ic_music_3,
+            R.drawable.ic_music_4,
+            R.drawable.ic_music_5};
+    int icon_number = 0;
+    int total_icons = 7;
+
+    ImageView ivSongImageMini;
+    TextView tvSongNameMini;
+    ImageButton ibPrevMini,ibNextMini,ibToggleMini;
+    SeekBar sbSeekSongMini;
+    static MediaPlayer mediaPlayer;
+    int position;
+    int totalCount;
+    String name;
+    ArrayList<File> songsList;
+    Thread updateSeekBar;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.songs_list);
 
+        lvSongs = findViewById(R.id.lvSongsList);
+        ivSongImageMini = findViewById(R.id.ivSongImageMini);
+        tvSongNameMini = findViewById(R.id.tvSongNameMini);
+        ibPrevMini = findViewById(R.id.ibPrevSongMini);
+        ibNextMini = findViewById(R.id.ibNextSongMini);
+        ibToggleMini = findViewById(R.id.ibToggleSongMini);
+        sbSeekSongMini = findViewById(R.id.sbSeeksongMini);
+        tvSongNameMini.setSelected(true);
+        askPermissions();
 
         toolbar = (Toolbar) findViewById(R.id.toolbarMusic);
         setSupportActionBar(toolbar);
@@ -45,11 +83,40 @@ public class MusicMainActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+        createThread();
+        if(mediaPlayer!=null)
+        {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+        }
+
+        position=0;
+        totalCount=songsList.size();
+
+        if(items.length>0) {
+            name = items[position];
+            tvSongNameMini.setText(name);
+        }
+
+        LoadPlayer();
+        setUpSeekBarUI();
+        setUpClickListeners();
+
+        updateSeekBar.start();
+
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                try {
+                    nextSong();
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
 
-        lvSongs = findViewById(R.id.lvSongsList);
 //        Toast.makeText(this, "on create called", Toast.LENGTH_SHORT).show();
-        askPermissions();
     }
 
     private void askPermissions()
@@ -78,7 +145,7 @@ public class MusicMainActivity extends AppCompatActivity {
     private void display()
     {
 //        Toast.makeText(this, "displaying list............", Toast.LENGTH_SHORT).show();
-        final ArrayList<File> songsList = findSongs(Environment.getExternalStorageDirectory());
+        songsList = findSongs(Environment.getExternalStorageDirectory());
         if(songsList.size()==0){
             MDToast.makeText(this,"No song file found",MDToast.LENGTH_SHORT,MDToast.TYPE_INFO).show();
             return;
@@ -94,11 +161,14 @@ public class MusicMainActivity extends AppCompatActivity {
         lvSongs.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,items));
 
         lvSongs.setOnItemClickListener((parent, view, position, id) -> {
-            String name = songsList.get(position).getName();
-            startActivity(new Intent(getApplicationContext(),MusicPlayer.class)
-                    .putExtra(Constants.SONG_POSITION,position)
-                    .putExtra(Constants.SONGS_LIST,songsList)
-                    .putExtra(Constants.SONG_NAME,name));
+            if(mediaPlayer!=null)
+            {
+                mediaPlayer.stop();
+                mediaPlayer.release();
+            }
+            this.name = items[position];
+            this.position = position;
+            startPlayer();
         });
     }
 
@@ -118,6 +188,132 @@ public class MusicMainActivity extends AppCompatActivity {
             }
         }
         return list;
+    }
+
+
+    private void setUpSeekBarUI()
+    {
+        sbSeekSongMini.setProgress(0);
+        sbSeekSongMini.getThumb().setColorFilter(new PorterDuffColorFilter
+                (getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN));
+        sbSeekSongMini.getProgressDrawable().setColorFilter(new PorterDuffColorFilter
+                (getResources().getColor(R.color.black), PorterDuff.Mode.MULTIPLY));
+    }
+
+    private void LoadPlayer() {
+        getRandomImage();
+        Uri uri = Uri.parse(songsList.get(position).toString());
+        mediaPlayer = MediaPlayer.create(getApplicationContext(),uri);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+            sbSeekSongMini.setProgress(0,true);
+        else
+            sbSeekSongMini.setProgress(0);
+        sbSeekSongMini.setMax(mediaPlayer.getDuration());
+//        mediaPlayer.start();
+    }
+
+    private void startPlayer() {
+        name = items[position];
+        tvSongNameMini.setText(name);
+        getRandomImage();
+        ibToggleMini.setImageResource(R.drawable.ic_pause_song);
+        Uri uri = Uri.parse(songsList.get(position).toString());
+        mediaPlayer = MediaPlayer.create(getApplicationContext(),uri);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+            sbSeekSongMini.setProgress(0,true);
+        else
+            sbSeekSongMini.setProgress(0);
+        sbSeekSongMini.setMax(mediaPlayer.getDuration());
+        mediaPlayer.start();
+    }
+
+    private void createThread()
+    {
+        updateSeekBar = new Thread(){
+            @Override
+            public void run() {
+                int totalDuration = mediaPlayer.getDuration();
+                int currentPosition = 0;
+                while(currentPosition < totalDuration)
+                {
+                    try {
+                        sleep(500);
+                        currentPosition = mediaPlayer.getCurrentPosition();
+                        sbSeekSongMini.setProgress(currentPosition);
+                    }catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+    }
+
+    private void setUpClickListeners()
+    {
+        sbSeekSongMini.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {/*NO-OP*/}
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {/*NO-OP*/}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                mediaPlayer.seekTo(seekBar.getProgress());
+            }
+        });
+
+        ibToggleMini.setOnClickListener((view)->{
+            sbSeekSongMini.setMax(mediaPlayer.getDuration());
+            if(mediaPlayer.isPlaying()){
+                ibToggleMini.setImageResource(R.drawable.ic_play_song);
+                mediaPlayer.pause();
+            }
+            else{
+                ibToggleMini.setImageResource(R.drawable.ic_pause_song);
+                mediaPlayer.start();
+            }
+        });
+
+        ibPrevMini.setOnClickListener((view)->{
+            previousSong();
+        });
+
+        ibNextMini.setOnClickListener((view)->{
+            nextSong();
+        });
+
+    }
+
+    private void previousSong()
+    {
+//        updateSeekBar.interrupt();
+        mediaPlayer.stop();
+        mediaPlayer.release();
+        position--;
+        if(position<0)
+            position = totalCount-1;
+//            position=((position-1)<0)?(songsList.size()-1):(position-1);
+        startPlayer();
+    }
+
+    private void nextSong()
+    {
+//        updateSeekBar.interrupt();
+        mediaPlayer.stop();
+        mediaPlayer.release();
+        position++;
+        if(position>=totalCount)
+            position = 0;
+//            position=((position+1)%songsList.size());
+        startPlayer();
+    }
+
+    private void getRandomImage()
+    {
+        Random r = new Random();
+        icon_number = r.nextInt(total_icons);
+        ivSongImageMini.setImageResource(imageList[icon_number]);
     }
 
 }

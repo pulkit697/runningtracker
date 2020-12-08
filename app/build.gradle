@@ -89,6 +89,6 @@ dependencies {
     compile 'com.valdesekamdem.library:md-toast:0.9.0'
     //dexter
     implementation 'com.karumi:dexter:6.2.2'
-    //drawer layout
-    implementation "androidx.drawerlayout:drawerlayout:1.1.1"
+    //circular image view
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }

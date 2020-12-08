@@ -35,7 +35,6 @@
         <activity android:name=".musicplayer.MusicMainActivity"
             android:theme="@style/splashTheme">
         </activity>
-        <activity android:name=".musicplayer.MusicPlayer"/>
     </application>
 
 </manifest>
